@@ -1,0 +1,30 @@
+There are three fields in the criteria that you will need to pass data to in order to  fully control the criteria.
+
+src : 
+pc0: Corresponds to the field in the report criteria.
+pn0: Corresponds to the operator in the report criteria.
+pv0: Corresponds to the value in the report criteria.
+
+These inputs are 0 based that means that you will access the first set of filter fields using 0 (e.g. pc0, pn0, pv0). As you add more filters, you just increase the number (pc0, pc1, pc2...).
+
+Now to the operators. Here are the values that Salesforce is expecting:
+
+eq = equals
+ne = not equals
+lt = less than
+le = less than or equals
+gt = greater than
+ge = greater than or equals
+co = contains
+nc = does not contain
+sw = starts with
+in = includes
+
+Bringing it all together. Run the desired report and copy the report ID from the URL. We'll use our Won Opportunities report for this example (https://na12.salesforce.com/00OU0000000aYlZ).Paste the report id into the link window. You can then append filter parameters at your leisure.
+
+"/00OU0000000aYlZ?pc0=ACCOUNT_ID&pn0=eq&pv0={!Account.Id}&pc1=WON&pn1=eq&pv1=TRUE"
+
+In the example above we are passing the Account ID in dynamically based on the record the user is in when he/she clicks on the link. Keep in mind that you can use the methods we have covered here to override filter criteria for existing report allowing you to reuse them when necessary instead of having to create a report with predefined filters where you only pass the filter value (pv). There are things you will need to tweak here and there. For example when passing currencies in your pv parameter you will want to URLENCODE() to make sure that value gets passed correctly.
+
+
+src : https://developer.salesforce.com/forums/?id=906F00000008q0sIAA
